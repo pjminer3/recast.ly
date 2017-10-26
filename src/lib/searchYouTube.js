@@ -3,6 +3,7 @@ var searchYouTube = (options, callback) => {
   options['part'] = 'snippet';
   options['key'] = window.YOUTUBE_API_KEY;
   options['maxResults'] = 5;
+  //options['chart'] = 'mostPopular';
   
   $.ajax({
     url: 'https://www.googleapis.com/youtube/v3/search',

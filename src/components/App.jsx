@@ -7,6 +7,9 @@ class App extends React.Component {
       selectedVideo: window.exampleVideoData[1],
       selectedVideos: window.exampleVideoData
     };
+    
+    this.selected = this.selected.bind(this);
+    searchYouTube({}, this.changedVids.bind(this));
   }
   
   selected (clickedVid) { // function for selecting videos from video list
@@ -14,6 +17,12 @@ class App extends React.Component {
     this.setState({selectedVideo: clickedVid});
   }
   changedVids (vids) {
+    this.selected(vids[0]);
+    this.setState({selectedVideos: vids});
+  }
+  
+  changedVidesEnter (vids) {
+    
     this.selected(vids[0]);
     this.setState({selectedVideos: vids});
   }
@@ -32,7 +41,7 @@ class App extends React.Component {
             <VideoPlayer video = {this.state.selectedVideo}/>
           </div>
           <div className="col-md-5">
-            <VideoList videos = {this.state.selectedVideos} select = {this.selected.bind(this)}/>
+            <VideoList videos = {this.state.selectedVideos} select = {this.selected}/>
           </div>
         </div>
       </div>

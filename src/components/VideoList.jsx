@@ -1,8 +1,8 @@
 
 var VideoList = (props) => (
   <div className="video-list">
-    {props.videos.map(video => {
-      return <VideoListEntry video={video} select = {props.select} />; // passed in the function 'select' so we can call it on videos when clicked
+    {props.videos.map((video, idx) => {
+      return <VideoListEntry video={video} select = {props.select} key={idx} />; // passed in the function 'select' so we can call it on videos when clicked
     })}
   </div>
     

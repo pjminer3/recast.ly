@@ -19,6 +19,7 @@ describe('App', function() {
   });
 
   it('should render a single VideoPlayer component', function() {
+    // debugger;
     var videoPlayer = findRenderedDOMComponentWithClass(app, 'video-player');
     expect(videoPlayer).to.exist;
   });

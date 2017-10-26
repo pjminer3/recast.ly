@@ -1,3 +1,4 @@
+
 describe ('VideoPlayer', function() {
   var {
     renderIntoDocument,

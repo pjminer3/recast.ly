@@ -21,12 +21,6 @@ class App extends React.Component {
     this.setState({selectedVideos: vids});
   }
   
-  changedVidesEnter (vids) {
-    
-    this.selected(vids[0]);
-    this.setState({selectedVideos: vids});
-  }
-  
   render() {
     return (
     

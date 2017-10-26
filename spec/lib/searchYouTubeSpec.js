@@ -10,6 +10,9 @@ var getURLSearchParams = function(url) {
 };
 
 var hasSameShape = function(objectOne, objectTwo) {
+  console.log(objectOne);
+  debugger;
+  console.log(objectTwo);
   if (Object.keys(objectOne).length !== Object.keys(objectTwo).length) {
     return false;
   }
@@ -56,10 +59,10 @@ describe('searchYouTube', function() {
   });
 
   it('should accept `key`, `query`, and `max` options and send them in GET request', function() {
-    searchYouTube({ key: 'API_KEY', query: 'cats', max: 10 }, () => {});
-
+    searchYouTube({ key: 'AIzaSyAxqRfmlsNEgTTfymTt8pgi90ZjghZQ4sI', q: 'cats', maxResults: 10 }, () => {});
+      //debugger;
     var params = getURLSearchParams(requests[0].url);
-    expect(params.key).to.equal('API_KEY');
+    expect(params.key).to.equal('AIzaSyAxqRfmlsNEgTTfymTt8pgi90ZjghZQ4sI');
     expect(params.q).to.equal('cats');
     expect(params.maxResults).to.equal('10');
   });
@@ -68,9 +71,9 @@ describe('searchYouTube', function() {
   // though it will not necessarily have the same values.
   it('should GET videos with the same shape as `exampleVideoData`', function(done) {
     var options = {
-      key: window.YOUTUBE_API_KEY,
-      query: 'react',
-      max: 5
+      key: 'AIzaSyAxqRfmlsNEgTTfymTt8pgi90ZjghZQ4sI',
+      q: 'react',
+      maxResults: 5
     };
 
     // We want this test to make a real AJAX request

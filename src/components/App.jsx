@@ -4,13 +4,18 @@ class App extends React.Component {
     
     this.state = { // <-- THIS HAS TO BE STATE. INVESTIGATE LATER (rerendering on StateChange)
       select: false,
-      selectedVideo: window.exampleVideoData[1]
+      selectedVideo: window.exampleVideoData[1],
+      selectedVideos: window.exampleVideoData
     };
   }
   
   selected (clickedVid) { // function for selecting videos from video list
     console.log('was clicked', clickedVid);
     this.setState({selectedVideo: clickedVid});
+  }
+  changedVids (vids) {
+    this.selected(vids[0]);
+    this.setState({selectedVideos: vids});
   }
   
   render() {
@@ -19,7 +24,7 @@ class App extends React.Component {
       <div>
         <nav className="navbar">
           <div className="col-md-6 offset-md-3">
-            <Search />
+            <Search videos = {this.changedVids.bind(this)}/> {/*Adding video rendering to search*/}
           </div>
         </nav>
         <div className="row">
@@ -27,7 +32,7 @@ class App extends React.Component {
             <VideoPlayer video = {this.state.selectedVideo}/>
           </div>
           <div className="col-md-5">
-            <VideoList videos = {window.exampleVideoData} select = {this.selected.bind(this)}/>
+            <VideoList videos = {this.state.selectedVideos} select = {this.selected.bind(this)}/>
           </div>
         </div>
       </div>

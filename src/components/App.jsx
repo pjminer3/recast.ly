@@ -2,6 +2,8 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     
+    // console.log(props);
+    
     this.state = { // <-- THIS HAS TO BE STATE. INVESTIGATE LATER (rerendering on StateChange)
       select: false,
       selectedVideo: window.exampleVideoData[1],
@@ -9,7 +11,12 @@ class App extends React.Component {
     };
     
     this.selected = this.selected.bind(this);
-    searchYouTube({}, this.changedVids.bind(this));
+    // searchYouTube({}, this.changedVids.bind(this));
+  }
+  
+  componentWillMount() {
+    this.props.searchYouTube({}, this.changedVids.bind(this)); // by adding 'this.props.' before 'searchYouTube' we were able to call search
+    // immediately before anything was rendered
   }
   
   selected (clickedVid) { // function for selecting videos from video list
@@ -17,11 +24,16 @@ class App extends React.Component {
     this.setState({selectedVideo: clickedVid});
   }
   changedVids (vids) {
-    this.selected(vids[0]);
-    this.setState({selectedVideos: vids});
+    if (vids.length > 0) {
+      this.selected(vids[0]);
+      this.setState({selectedVideos: vids});
+    }
   }
   
   render() {
+    
+    
+    
     return (
     
       <div>
